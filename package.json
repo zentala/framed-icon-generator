@@ -23,6 +23,7 @@
   "homepage": "https://github.com/zentala/framed-icon-generator#readme",
   "dependencies": {
     "canvas": "^2.8.0",
+    "canvas-txt": "^3.0.0",
     "chalk": "^4.1.2",
     "commander": "^8.1.0",
     "node-fetch": "^3.0.0"
