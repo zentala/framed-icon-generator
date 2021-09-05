@@ -19,8 +19,15 @@ $
 
 You can shorten it to:
 ``` bash
-$ node index --t "relay" -o "relay"
+$ node index -t "relay" -o "relay"
 ```
+
+OR convert icons in batch:
+``` bash
+$ node index -b
+```
+
+All icons from `icons/input/` will be processed and saved into `icons/output/`.
 
 ## Not covered edge cases
 * overwritting previously generated icon without prompt
