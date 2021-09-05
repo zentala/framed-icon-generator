@@ -5,7 +5,8 @@ const path = require('path')
 const program = require('commander')
 const chalk = require('chalk')
 
-const { generate } = require('./generator')
+const { generate, processBatch } = require('./generator')
+
 const pjson = require(path.join(__dirname, './package.json'))
 
 program
@@ -20,21 +21,11 @@ program.parse(process.argv)
 const options = program.opts()
 
 if(options.batch) {
-    const inputPath = path.join(__dirname, 'icons/input')
-    const outputPath = path.join(__dirname, 'icons/output')
-    const inputIcons = fs.readdirSync(inputPath)
-
-    !fs.existsSync(outputPath) && fs.mkdirSync(outputPath, { recursive: true })
-
-    inputIcons.forEach(inputIcon => {
-        const inputIconPath = path.join(inputPath, inputIcon)
-        const outputIconPath = path.join(outputPath, inputIcon)
-        const text = inputIcon.split('.')[0].replace(/[-_]/g, ' ');
-        generate(text, inputIconPath, outputIconPath)
-        console.log(chalk.green(`${inputIcon} generated`))
-    })
+  processBatch()
 } else {
   generate(options.title, options.icon, options.output)
+    .then(console.log(chalk.green(`${options.output} generated`)))
+    .catch(console.error)
 }
 
 
