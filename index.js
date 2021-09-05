@@ -12,8 +12,8 @@ program
     .version(pkg.version)
     .description(`generate icon`)
     .option('-t, --title <title>', 'Icon title / main label content')
-    .option('-i, --image', 'Source image path')
-    .option('-s, --output <output>', 'Optuput filename', 'output')
+    // .option('-i, --image', 'Source image path')
+    .option('-o, --output <output>', 'Optuput filename', 'output')
 
 program.parse(process.argv)
 const options = program.opts()
@@ -39,12 +39,13 @@ context.fillRect(600 - textWidth / 2 - 10, 170 - 5, textWidth + 20, 120)
 context.fillStyle = '#fff'
 context.fillText(text, 600, 170)
 
+const imageTitle = options.title.toString().toUpperCase()
 context.fillStyle = '#fff'
 context.font = 'bold 30pt Menlo'
-context.fillText(options.title.toString().toUpperCase(), 600, 530)
-
+context.fillText(imageTitle, 600, 530)
+console.log(`Added title "${imageTitle}" to the icon`)
 
 const outputFilename = `${options.output}.png`
 const buffer = canvas.toBuffer('image/png')
 fs.writeFileSync(`./${outputFilename}`, buffer)
-console.log(`Saved as ${outputFilename}`)
+console.log(`Icon saved as ${outputFilename}`)
