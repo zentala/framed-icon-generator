@@ -1,148 +1,290 @@
+require('json5/lib/register')
+
 const fs = require('fs')
 const path = require('path')
 const { createCanvas, loadImage } = require('canvas')
-const { roundedRect } = require('./helpers')
 const canvasTxt = require('canvas-txt').default
-const chalk = require('chalk')
+// const chalk = require('chalk')
+const { dirname } = require('path')
+const fabric = require("fabric").fabric
 
-const processBatch = async () => {
-  const inputPath = path.join(__dirname, 'icons/input')
-  const outputPath = path.join(__dirname, 'icons/output')
-  const inputIcons = fs.readdirSync(inputPath)
+const { roundedRect } = require('./helpers')
 
-  !fs.existsSync(outputPath) && fs.mkdirSync(outputPath, { recursive: true })
+const processBatch = async (batch) => {
+  const batchPath = path.resolve(__dirname, batch) // batch JSON5 file path
+  const { config, icons, theme } = require(batchPath) // load data from batch JSON5 file
 
-  for (const inputIcon of inputIcons) {
-    if(inputIcon.endsWith('.png')) {
-      const inputIconPath = path.join(inputPath, inputIcon)
-      const outputIconPath = path.join(outputPath, inputIcon)
-      const iconText = inputIcon.split('.')[0].replace(/[-_]/g, ' ');
-      await generate(iconText, inputIconPath, outputIconPath)
-      console.log(chalk.green(`${inputIcon} generated`))
-      console.log(chalk.gray('------------'))
+  // create optput path if don't exitst
+  const outputIconsPath = path.join(dirname(batchPath), config.subdir.output) // output subdir path
+  !fs.existsSync(outputIconsPath) && fs.mkdirSync(outputIconsPath, { recursive: true })
+
+  // generate every icon listed in batch
+  for(const icon of icons) {
+    // add to config input & oputput paths created from dirnames
+    config.path = {
+      input: path.join(dirname(batchPath), config.subdir.input, icon.filename),
+      output: path.join(dirname(batchPath), config.subdir.output, icon.filename),
     }
+
+    await generate2({ ...icon, config, theme }) // do the magic
+    console.log('')
   }
 }
 
-const generate = async (title, inputIconPath, outputIconPath) => {
-  const width = 600
-  const height = 800
-  const margin = 40
-  const radius = 40
-  let settings = {
-    width: 600,
-    margin: 40,
-    radius: 50,
-    text: {
-      size: 100,
-      color: 'black',
-      align: 'center'
-    }
+const generate2 = async ({ desc, config, theme }) => {
+  const canvas = new fabric.StaticCanvas(null, {
+    width: theme.wrapper.width,
+    height: theme.wrapper.height
+  })
+
+
+  // main rectangle
+  const rect = new fabric.Rect({
+    left: 0,
+    top: 0,
+    fill: theme.general.color,
+    width: theme.wrapper.width,
+    height: theme.wrapper.height,
+    rx: theme.wrapper.radius,
+    ry: theme.wrapper.radius,
+  })
+
+
+  // clip inside transparent rectangle
+  const rectInnerClipPath = new fabric.Rect({
+    left: theme.wrapper.padding,
+    top: theme.wrapper.padding,
+    width: theme.wrapper.width - (theme.wrapper.padding * 2),
+    height: theme.wrapper.height - (theme.wrapper.padding * 2),
+    rx: theme.wrapper.radius / 2,
+    ry: theme.wrapper.radius / 2,
+    absolutePositioned: true
+  })
+  rectInnerClipPath.inverted = true
+
+  rect.clipPath = rectInnerClipPath
+  canvas.add(rect)
+
+
+  // add icon
+  const insideMaxWidth = theme.wrapper.width - (theme.wrapper.padding * 2)
+  const imageMaxWidth = insideMaxWidth -  (theme.icon.margin * 2)
+
+  const insideMaxHeight = insideMaxWidth * theme.inside.proportion
+  const imageMaxHeight = insideMaxHeight - (theme.icon.margin * 2)
+
+  const img = await getImage(config.path.input)
+  img.set({ originX: 'center', originY: 'center' })
+
+  const { width: rawWidth, height: rawHeight } = img.getOriginalSize()
+
+  if(rawWidth * theme.inside.proportion < rawHeight) {
+    img.rotate(90)
   }
 
-  // Get icon & its size from input file
-  const inputIconImage = await loadImage(inputIconPath)
-  settings.icon = {
-    rawWidth: inputIconImage.width,
-    rawHeight: inputIconImage.height,
-    margin: 50,
-  }
+  rawWidth * theme.inside.proportion < rawHeight
+  ? img.scaleToHeight(imageMaxHeight)
+  : img.scaleToWidth(imageMaxWidth)
 
-  settings.icon.width = settings.width - (settings.margin * 2) - (settings.icon.margin * 2);
-  settings.icon.proportion = settings.icon.width / settings.icon.rawWidth;
-  settings.icon.height = settings.icon.rawHeight * settings.icon.proportion;
+  const iconContainer = new fabric.Group([ img ], {
+    left: theme.wrapper.padding + theme.icon.margin,
+    top: theme.wrapper.padding + theme.icon.margin,
+    width: imageMaxWidth,
+    height: imageMaxHeight,
+  })
 
-  // Define inside (transparent) container
-  settings.inside = {
-    width: settings.width - 2 * settings.margin,
-    height: settings.icon.height + 2 * settings.icon.margin
-  }
+  canvas.add(iconContainer)
 
-  // Text height
-  settings.text.fromTop = settings.inside.height + settings.margin * 1.5
 
-  // Total height
-  settings.height = settings.text.fromTop + settings.text.size + settings.margin
+  // create text background
+  const textBg = new fabric.Rect({
+    left: 0,
+    top: theme.wrapper.padding + insideMaxHeight,
+    width: theme.wrapper.width,
+    height: theme.wrapper.height - insideMaxHeight - theme.wrapper.padding*2
+  })
 
-  // Init
-  const canvas = createCanvas(settings.width, settings.height)
+  // create text lines array
+  const texts = []
+  let top = 0
+  desc.forEach((line, i, arr) => {
+    const fontSize = (line.level || theme.desc.font.defLevel) * 8
+
+    texts.push(new fabric.Text(line.text, {
+      textAlign: 'center',
+      fontSize,
+      lineHeight: 1,
+      fontFamily: theme.desc.font.name,
+      fontWeight: theme.desc.font.weight,
+      top,
+      originX: 'center',
+    }))
+
+    top = top + fontSize
+  })
+
+  // create text lines group
+  const textGroup = new fabric.Group(texts, {
+    left: theme.wrapper.padding,
+    top: theme.wrapper.padding*2 + insideMaxHeight,
+    width: insideMaxWidth,
+    height: theme.wrapper.height - (theme.wrapper.padding * 3) - insideMaxHeight,
+    absolutePositioned: true,
+  })
+
+  // cut text in the bg and add it to the canvas
+  textGroup.inverted = true
+  textBg.clipPath = textGroup
+  canvas.add(textBg)
+
+  // render & save
+  canvas.renderAll()
+  console.log('Saving icon in ', config.path.output)
+  const stream = canvas.createPNGStream()
+  const out = fs.createWriteStream(config.path.output)
+  stream.on('data', (chunk) => out.write(chunk))
+}
+
+const getImage = (path) => {
+  return new Promise((resolve, reject) => {
+    fabric.Image.fromURL('file://' + path, img => {
+      return resolve(img)
+    })
+  })
+}
+
+const generate = async ({desc, config, theme }) => {
+
+
+  /* Init new image ------------------------------------------------------- */
+  /* ---------------------------------------------------------------------- */
+  const canvas = createCanvas(theme.wrapper.width, theme.wrapper.height)
+
   const context = canvas.getContext('2d')
 
-  // Background
   context.fillStyle = 'transparent'
-  context.fillRect(0, 0, settings.width, settings.height)
+  context.fillRect(0, 0, theme.width, theme.height)
 
-  // Main (outside) rect
+
+
+  /* Draw  main (outside) rect -------------------------------------------- */
+  /* ---------------------------------------------------------------------- */
   roundedRect(context, {
     x: 0,
     y: 0,
-    width: settings.width,
-    height: settings.height,
-    radius: settings.radius*2,
+    width: theme.wrapper.width,
+    height: theme.wrapper.height,
+    radius: theme.wrapper.radius*2,
     color: "black"
   });
 
-  // Cut rect for icon in main rect
+
+
+  /* Inner transparent container ------------------------------------------ */
+  /* ---------------------------------------------------------------------- */
+  theme.inside.width = theme.wrapper.width - 2 * theme.wrapper.padding
+  theme.inside.height = theme.inside.width*theme.inside.proportion
+
   context.save();
   context.globalCompositeOperation = "destination-out";
+
+  // draw rounded rect
   roundedRect(context, {
-    x: settings.margin,
-    y: settings.margin,
-    width: settings.inside.width,
-    height: settings.inside.height,
-    radius: radius,
+    x: theme.wrapper.padding,
+    y: theme.wrapper.padding,
+    width: theme.inside.width,
+    height: theme.inside.height+theme.inside.radius,
+    radius: theme.inside.radius,
     color: "white"
   });
-  context.fillRect(settings.margin, settings.margin*5, settings.inside.width, settings.inside.height-(settings.margin*4));
+
+  // cut the rounded stuff from bottom and crop inner container to expected height
+  context.fillRect(theme.wrapper.padding, theme.wrapper.padding+theme.inside.height, theme.inside.width, theme.inside.radius);
   context.restore();
 
 
-  // debug	false	Shows the border and align gravity for debugging purposes
-  // align	center	Text align. Other possible values: left, right
-  // vAlign	middle	Text vertical align. Other possible values: top, bottom
-  // fontSize	14	Font size of the text in px
-  // font	Arial	Font family of the text
-  // fontStyle	''	Font style, same as css font-style. Examples: italic, oblique 40deg
-  // fontVariant	''	Font variant, same as css font-variant. Examples: small-caps, slashed-zero
-  // fontWeight	''	Font weight, same as css font-weight. Examples: bold, 100
-  // lineHeight	null	Line height of the text, if set to null it tries to auto-detect the value
-  // justify	false	Justify text if true, it will insert spaces between words when necessary.
 
-  // cut text inside the main rect
+  /* Cut text inside the main rect ---------------------------------------- */
+  /* ---------------------------------------------------------------------- */
   context.save();
   context.globalCompositeOperation = "destination-out";
-  const imageTitle = title.toString().toUpperCase()
-  // canvasTxt.font = 'MesloLGS NF'
-  // canvasTxt.font = 'Apple SD Gothic Neo'
-  // canvasTxt.font = 'Avenir'
-  canvasTxt.font = 'Avenir Next'
-  canvasTxt.fontSize = settings.text.size
-  canvasTxt.fontWeight = 900
-  canvasTxt.vAlign = 'top'
-  // canvasTxt.fontStyle = 'heavy'
-  canvasTxt.drawText(context, imageTitle, margin, settings.text.fromTop, settings.inside.width, 200)
+
+  // Define font settings
+  canvasTxt.font = theme.desc.font.name
+  canvasTxt.fontSize = theme.desc.size
+  canvasTxt.lineHeight = theme.desc.size
+  canvasTxt.fontWeight = theme.desc.font.weight
+  canvasTxt.vAlign = 'center'
+
+  desc.forEach(line => {
+    console.log(line.text)
+  })
+  const imageTitle = 'dsad34343'
+  canvasTxt.drawText(context, imageTitle, theme.wrapper.padding, theme.inside.height, theme.inside.width, theme.desc.height)
   context.restore();
   console.log(`Added title "${imageTitle}" to the icon`)
 
-  // add icon
-  const args = [
-    inputIconImage,
-    settings.margin + settings.icon.margin,
-    settings.margin + settings.icon.margin,
-    settings.icon.width,
-    settings.icon.height
-  ]
-  context.drawImage(...args)
 
-  // make it black for sure
-  context.globalCompositeOperation = 'source-in';
-  context.fillStyle = 'black'
-  context.fillRect(0, 0, settings.width, settings.height);
 
-  // save
+  /* Add icon to the canvas ----------------------------------------------- */
+  /* ---------------------------------------------------------------------- */
+  const inputIconImage = await loadImage(config.path.input)
+
+  theme.icon.rawWidth = inputIconImage.width
+  theme.icon.rawHeight = inputIconImage.height
+
+  theme.icon.proportion = theme.icon.width / theme.icon.rawWidth
+  theme.icon.height = Math.round(theme.icon.rawHeight * theme.icon.proportion)
+
+  theme.icon.rotate = theme.icon.rawWidth < theme.icon.rawHeight
+
+  theme.icon.width = theme.icon.rotate
+    ? theme.inside.height - (theme.icon.margin * 2)
+    : theme.inside.width - (theme.icon.margin * 2)
+  theme.icon.proportion = theme.icon.width / theme.icon.rawWidth
+  theme.icon.height = Math.round(theme.icon.rawHeight * theme.icon.proportion)
+
+  theme.icon.fromTop = theme.wrapper.padding + ( (theme.inside.height - theme.icon.height + theme.icon.margin) / 2)
+  theme.icon.fromLeft = theme.wrapper.padding + ( (theme.inside.width - theme.icon.width) / 2)
+
+  if(theme.icon.rotate) {
+    console.log('Rotating icon...')
+    context.save()
+    context.translate(theme.icon.fromLeft + theme.icon.width/2, theme.icon.fromTop + theme.icon.height/2)
+    context.rotate(Math.PI/2)
+    context.drawImage(...[
+      inputIconImage,
+      -theme.icon.width/2,
+      -theme.icon.height/2,
+      theme.icon.width,
+      theme.icon.height
+    ])
+    context.restore();
+  } else {
+    context.drawImage(...[
+      inputIconImage,
+      theme.icon.fromLeft,
+      theme.icon.fromTop,
+      theme.icon.width,
+      theme.icon.height
+    ])
+  }
+
+
+
+  /* Ensure all layers have the same color -------------------------------- */
+  /* ---------------------------------------------------------------------- */
+  context.globalCompositeOperation = 'source-in'
+  context.fillStyle = theme.general.color
+  context.fillRect(0, 0, theme.wrapper.width, theme.wrapper.height)
+
+
+
+  /* Save the image ------------------------------------------------------- */
+  /* ---------------------------------------------------------------------- */
   const buffer = canvas.toBuffer('image/png')
-  await fs.writeFileSync(outputIconPath, buffer)
-  console.log(`Icon saved as ${outputIconPath}`)
+  await fs.promises.writeFile(config.path.output, buffer)
+  console.log(`Icon saved as ${config.path.output}`)
 }
 
-module.exports = { generate, processBatch }
+module.exports = { generate: generate2, processBatch }

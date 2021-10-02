@@ -1,0 +1,116 @@
+{
+  config: {
+    subdir: {
+      input: "input",
+      output: "output"
+    }
+  },
+  theme: {
+    general: {
+      color: "black"
+    },
+    margin: 40,
+    inside: {
+       radius: 25,
+       proportion: 0.8
+    },
+
+    // whole black wrapper
+    wrapper: {
+      width: 600,
+      height: 800,
+      radius: 50,
+      padding: 40,
+    },
+    // white space for icon (rm? or merge with inside)
+    space: {
+      height: 300
+    },
+
+    // icon itself
+    icon: {
+      margin: 50,
+    },
+
+    // icon text description
+    desc: {
+      font: {
+        name: 'Avenir Next', // 'MesloLGS NF', 'Apple SD Gothic Neo', 'Avenir'
+        weight: 900,
+        defLevel: 5,
+      },
+      height: 400,
+      size: 100,
+      lineHeight: 120,
+      color: "black",
+      align: "center"
+    }
+
+  },
+  icons: [
+    {
+      title: "ARDUINO",
+      filename: "ARDUINO.1.png",
+      lines: 1,
+      desc: [
+        {
+          text: "ARDUIONO", level: 10
+        }
+      ]
+    },
+    {
+      filename: "transf.png",
+      desc: [
+        { text: "12-24V" },
+        { text: "TRANSFORMATORS" },
+        { text: "XXX" }
+      ]
+    },
+    {
+      filename: "pcb.png",
+      desc: [
+        { text: "PROTOTYPING", level: 6.7 },
+        { text: "PCBs", level: 20 },
+
+      ]
+    },
+    {
+      filename: "ble.png",
+      desc: [
+        { text: "BLE ILS" },
+        { text: "BLE ILS" },
+        { text: "BLE ILS" }
+      ]
+    },
+    // {
+    //   filename: ".png",
+    //   desc: [
+    //     { text: "" }
+    //   ]
+    // },
+    // {
+    //   filename: ".png",
+    //   desc: [
+    //     { text: "" }
+    //   ]
+    // },
+    // {
+    //   filename: ".png",
+    //   desc: [
+    //     { text: "" }
+    //   ]
+    // },
+    // {
+    //   filename: ".png",
+    //   desc: [
+    //     { text: "" }
+    //   ]
+    // },
+    // {
+    //   filename: ".png",
+    //   desc: [
+    //     { text: "" }
+    //   ]
+    // }
+  ]
+}

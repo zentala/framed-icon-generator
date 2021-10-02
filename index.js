@@ -15,13 +15,13 @@ program
     .option('-t, --title <title>', 'Icon title / main label content')
     .option('-i, --icon <icon>', 'Source image path', 'icons/input/example.png')
     .option('-o, --output <output>', 'Output image path', 'icons/output/example.png')
-    .option('-b, --batch', 'Gets icons from "icons/input/", convert & throw them to "icons/output/".')
+    .option('-b, --batch <batch>', 'Gets icons from "icons/input/", convert & throw them to "icons/output/".')
 
 program.parse(process.argv)
 const options = program.opts()
 
 if(options.batch) {
-  processBatch()
+  processBatch(options.batch)
 } else {
   generate(options.title, options.icon, options.output)
     .then(console.log(chalk.green(`${options.output} generated`)))

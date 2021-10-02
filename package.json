@@ -26,6 +26,8 @@
     "canvas-txt": "^3.0.0",
     "chalk": "^4.1.2",
     "commander": "^8.1.0",
+    "fabric": "^4.6.0",
+    "json5": "^2.2.0",
     "node-fetch": "^3.0.0"
   }
 }
