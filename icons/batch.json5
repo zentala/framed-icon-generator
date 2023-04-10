@@ -12,13 +12,13 @@
     margin: 40,
     inside: {
        radius: 25,
-       proportion: 0.8
+       proportion: 0.7
     },
 
     // whole black wrapper
     wrapper: {
       width: 600,
-      height: 800,
+      height: 700,
       radius: 50,
       padding: 40,
     },
@@ -50,67 +50,301 @@
   icons: [
     {
       title: "ARDUINO",
-      filename: "ARDUINO.1.png",
+      filename: "01.arduino.png",
       lines: 1,
       desc: [
-        {
-          text: "ARDUIONO", level: 10
-        }
+        { text: "ARDUIO", level: 14 },
+        { text: "MICROCONTROLLERS", level: 5.3 }
       ]
     },
     {
-      filename: "transf.png",
+      filename: "02.atmega.png",
       desc: [
-        { text: "12-24V" },
-        { text: "TRANSFORMATORS" },
-        { text: "XXX" }
+        { text: "AMega", level: 16 },
+        { text: "MICROCONTROLLERS", level: 5.3 }
       ]
     },
     {
-      filename: "pcb.png",
+      filename: "03.ble.png",
+      desc: [
+        { text: "UBUDU's", level: 11 },
+        { text: "BLE ILS", level: 14 }
+      ]
+    },
+    {
+      filename: "04.btns.png",
+      desc: [
+        { text: "BUTTONs", level: 11 },
+        { text: "w/ CAPs", level: 11.5 }
+      ]
+    },
+    {
+      filename: "05.capacitors.png",
+      desc: [
+        { text: "CAPAC", level: 12 },
+        { text: "-ITORs", level: 12 }
+      ]
+    },
+    {
+      filename: "06.diode.png",
+      desc: [
+        { text: "DIODEs", level: 15.5 }
+      ]
+    },
+    {
+      filename: "07.esp.png",
+      desc: [
+        { text: "ESP8266", level: 12 }
+      ]
+    },
+    {
+      filename: "08.eth.png",
+      desc: [
+        { text: "ETH", level: 20 }
+      ]
+    },
+    {
+      filename: "09.heat-shrink-tubes.png",
+      desc: [
+        { text: "HEAT-SHRINK", level: 7 },
+        { text: "TUBEs", level: 15 }
+      ]
+    },
+    {
+      filename: "10.oscillators.png",
+      desc: [
+        { text: "CRYSTAL", level: 13 },
+        { text: "OSCILLATORs", level: 8.4 }
+      ]
+    },
+    {
+      filename: "11.jumper.cables.png",
+      desc: [
+        { text: "JUMPER", level: 13 },
+        { text: "CABLEs", level: 14 }
+      ]
+    },
+    {
+      filename: "12.pcb.png",
       desc: [
         { text: "PROTOTYPING", level: 6.7 },
-        { text: "PCBs", level: 20 },
-
+        { text: "PCBs", level: 20 }
       ]
     },
     {
-      filename: "ble.png",
+      filename: "13.r9.png",
       desc: [
-        { text: "BLE ILS" },
-        { text: "BLE ILS" },
-        { text: "BLE ILS" }
+        { text: "R9 BATTs", level: 13 },
+        { text: "& HOLDERs", level: 10 }
+      ]
+    },
+    {
+      filename: "14.relays.png",
+      desc: [
+        { text: "RELAYs", level: 16 },
+        { text: "12V | 10A 250VAC", level: 6.5 },
+        { text: "5V | 2A 250VAC", level: 6.5 }
+      ]
+    },
+    {
+      filename: "15.res.png",
+      desc: [
+        { text: "RESIS", level: 13 },
+        { text: "-TORs", level: 13 }
+      ]
+    },
+   {
+      filename: "16.rfid.png",
+      desc: [
+        { text: "RFID", level: 18 }
+      ]
+    },
+    {
+      filename: "17.servo.png",
+      desc: [
+        { text: "SERVO", level: 16.5 }
+      ]
+    },
+    {
+      filename: "18.solder.masks.png",
+      desc: [
+        { text: "SOLDER", level: 13 },
+        { text: "MASKS", level: 14 }
+      ]
+    },
+    {
+      filename: "19.transf.png",
+      rotate: 90,
+      desc: [
+        { text: "DC-DC", level: 17 },
+        // { text: "CONVENTER", level: 8 },
+        { text: "12 ⇒ 3.3, 3.7, 5, 9V", level: 5.5 },
+      ]
+    },
+    {
+      filename: "20.aa.holders.png",
+      desc: [
+        { text: "AA BATTs", level: 12 },
+        { text: "HOLDERs", level: 12 }
+      ]
+    },
+    {
+      filename: "21.aaa.batt.png",
+      desc: [
+        { text: "AAA BATTs", level: 11 },
+        { text: "HOLDERs", level: 11 }
+      ]
+    },
+    {
+      filename: "22.digit.png",
+      desc: [
+        { text: "7-SEG", level: 14 },
+        { text: "DIGITs", level: 11 }
+      ]
+    },
+    {
+      filename: "23.vh396.png",
+      desc: [
+        { text: "VH 3.96mm", level: 10 },
+        { text: "CONNECTORS", level: 8.8 },
+      ]
+    },
+    {
+      filename: "24.lcd.png",
+      desc: [
+        { text: "I2C LCD", level: 12 },
+        { text: "SCREENs", level: 12 },
+      ]
+    },
+    {
+      filename: "25.switch.png",
+      desc: [
+        { text: "250V ROCKER", level: 8.5 },
+        { text: "SWITCHes", level: 12 },
+      ]
+    },
+    {
+      filename: "26.relay.board.png",
+      desc: [
+        { text: "RELAY", level: 15 },
+        { text: "BOARDs", level: 15 }
+      ]
+    },
+    {
+      filename: "27.arduino.kit.png",
+      lines: 1,
+      desc: [
+        { text: "ARDUIO", level: 14 },
+        { text: "SENSOR KIT", level: 9.7 }
+      ]
+    },
+    {
+      filename: "28.pin.header.png",
+      desc: [
+        { text: "1.27mm THT", level: 9 },
+        { text: "PIN HEADERs", level: 9 }
+      ]
+    },
+    {
+      filename: "29.dc-dc.conv.png",
+      desc: [
+        { text: "DC-DC", level: 17 },
+        { text: "CONVENTERs", level: 8 },
+      ]
+    },
+    {
+      filename: "30.ribbon.png",
+      desc: [
+        { text: "2.54mm IDC", level: 9.2 },
+        { text: "RIBBON CABLEs", level: 7.4 },
+        // { text: "SOCKETs & CABLEs", level: 6 },
       ]
     },
     // {
-    //   filename: ".png",
+    //   filename: "31.tools.png",
     //   desc: [
-    //     { text: "" }
+    //     { text: "TOOLS", level: 16 },
     //   ]
     // },
-    // {
-    //   filename: ".png",
-    //   desc: [
-    //     { text: "" }
-    //   ]
-    // },
-    // {
-    //   filename: ".png",
-    //   desc: [
-    //     { text: "" }
-    //   ]
-    // },
-    // {
-    //   filename: ".png",
-    //   desc: [
-    //     { text: "" }
-    //   ]
-    // },
-    // {
-    //   filename: ".png",
-    //   desc: [
-    //     { text: "" }
-    //   ]
-    // }
+    {
+      filename: "32.bags.png",
+      desc: [
+        { text: "ZIPPER", level: 12 },
+        { text: "BAGS", level: 16 },
+      ]
+    },
+    {
+      filename: "33.iec320.png",
+      desc: [
+        { text: "FUSED ROCKER SWITCH", level: 5.3 },
+        { text: "IEC320 C14", level: 11 }
+      ]
+    },
+    {
+      filename: "34.audio.png",
+      desc: [
+        { text: "AUDIO", level: 16 },
+      ]
+    },
+    {
+      filename: "35.atx.png",
+      desc: [
+        { text: "SCREWS", level: 14 },
+        { text: "JUMPERS", level: 12 },
+      ]
+    },
+    {
+      filename: "36.esp.png",
+      desc: [
+        { text: "ESP32", level: 16 },
+      ]
+    },
+    { // shift registers - cale pudelkos
+      filename: "37.shift-register.png",
+      desc: [
+        { text: "SHIFT", level: 16 },
+        { text: "REGISTERs", level: 11 },
+      ]
+    },
+    { // microPSU 250V to 12, 5, 3.3v
+      filename: "38.ac-dc.png",
+      desc: [
+        { text: "AC-DC", level: 17 },
+        { text: "12, 5, 3.3V", level: 8 },
+      ]
+    },
+    { // magnetic usb cables
+      filename: "39.magnetic.usb.png",
+      desc: [
+        { text: "MAGNETIC", level: 8 },
+        { text: "USB", level: 18 },
+      ]
+    },
+    { // 2x RPi/Arduino components
+      filename: "40.module.png",
+      desc: [
+        { text: "RPi / ARDUINO", level: 8 },
+        { text: "COMPONENTs", level: 8 },
+      ]
+    },
+
+
+    //
+    // Assambled projects
+    // 12V DC cables & switches
+    // Accesories
+    // unsorted electronics
+    // random
+    // unsorder zipper bgs
+    // new zpper bags
+
+
+    // 1.27mm tht pin header (glowka do zciskania)
+    // 4x jumper calbles
+
+    // atx accesoria - screws, zworki,
+    // zatyczki do sluchawek
+    /// fasion, clothing
+
   ]
 }

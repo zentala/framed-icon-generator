@@ -30,4 +30,7 @@ $ node index -b
 All icons from `icons/input/` will be processed and saved into `icons/output/`.
 
 ## Not covered edge cases
-* overwritting previously generated icon without prompt
+* overwriting previously generated icon without prompt
+
+## More
+* splitting words in English: https://www.hyphenation24.com/
