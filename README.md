@@ -1,4 +1,4 @@
-# Framed Icon Generator [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/zentala/framed-icon-generator)
+# Framed Icon Generator [![stability-experimental](https://img.shields.io/badge/stability-experimental-orange.svg)](https://github.com/emersion/stability-badges#experimental) [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/zentala/framed-icon-generator)
 
 ## 🌍 Overview
 Adds rounded border and description around icon. 
