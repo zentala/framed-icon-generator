@@ -5,7 +5,7 @@ Adds rounded border and description around icon.
 
 I use it to generate labels for my collection of electronic components.
 
-![Generated sticker icons on my electronic drawers](https://cdn.zentala.io/img/framed_icon.jpg)
+![Generated sticker icons on my electronic drawers](https://cdn.zentala.io/img/framed/framed_icon.jpg)
 
 # 📝 Limitations in Icon Provision
 Unfortunately, I am unable to provide the specific icons I used due to copyright issues. While I can offer the entire code for generating the frames, the icons themselves, essential for a complete product, are missing. If you have ideas for circumventing this, such as creating your own icon set or using open-source electronics icons sets, please feel free to submit your PRs and implement changes. Despite the lack of icons, I still hope to inspire someone in creating something similar.
