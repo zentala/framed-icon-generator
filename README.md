@@ -21,10 +21,14 @@ I often lack the time to realize my business ideas, but there is a substantial b
 This service seems absent in the market, especially in Poland, and I would be a potential customer. If you're interested in investing in such a venture, contact [Zentala Innovation Agency](http://zentala.agency/), that I created to realize such innovative projects.
 
 # 🖨️ Print Quality
-I used a Brother PT-E550W printer at 180dpi, resulting in legible but slightly pixelated prints. For professional applications, I recommend a 360dpi printer, like the PT-P950, for clearer output.
+I used a Brother `PT-E550W` printer which offers only 180dpi resolution, resulting in legible but slightly pixelated prints. For professional applications, I recommend a printer with 360dpi resolution, such as the `PT-P900W`, for clearer output. I used 24mm width semi-transparent tape. I strongly recommend these transparent tapes for a seamlessly blending or background-communing effect.
 
 ## 🏗 Development & demo
 Click `Gitpod` button above to setup development workspace in the Cloud and develop code in your browser. [You can read more about GitPod on the officail website of the project.](https://www.gitpod.io/)
+
+### Discamler
+What you receive is not even an application; it's a script. Using this script requires basic programming knowledge and I provide it as-is, with all its flaws. It should be treated as a handy tool I constructed to expedite the generation of over 50 icons in this particular style, not as an application ready for immediate use. Do not expect it to work out of the box or to achieve similar effects without significant effort in preparing icons and adjusting it to your needs. Consider this an inspiration.
+
 
 ### Usage
 
