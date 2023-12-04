@@ -18,7 +18,7 @@ I often lack the time to realize my business ideas, but there is a substantial b
 4) Icons for smart home buttons, clarifying their functions.
 5) Labels for jars and storage containers.
 
-This service seems absent in the market, especially in Poland, and I would be a potential customer. If you're interested in investing in such a venture, contact [Zentala Innovation Agency](http://zentala.agency/), that I created to realize such innovative projects.
+This service seems absent in the market, especially in Poland, and I would be a potential customer, so I could suppose there are others. I dream of building a SaaS application of this kind, so if you're interested in investing in such a venture, contact [Zentala Innovation Agency](http://zentala.agency/), that I created to realize such innovative projects.
 
 # 🖨️ Print Quality
 I used a Brother `PT-E550W` printer which offers only 180dpi resolution, resulting in legible but slightly pixelated prints. For professional applications, I recommend a printer with 360dpi resolution, such as the `PT-P900W`, for clearer output. I used 24mm width semi-transparent tape. I strongly recommend these transparent tapes for a seamlessly blending or background-communing effect.
@@ -51,8 +51,7 @@ $ node index -b
 
 All icons from `icons/input/` will be processed and saved into `icons/output/`.
 
-## Not covered edge cases
-* overwriting previously generated icon without prompt
+## ✨ Guidelines and Future Development
 
-## More
-* splitting words in English: https://www.hyphenation24.com/
+* **Not Covered Edge Cases:** Overwriting previously generated icons without a prompt in batch mode is not necessary. It unnecessarily consumes resources even though the description would not change.
+* **More Tips:** For splitting words in English, I recommend using [https://www.hyphenation24.com/](https://www.hyphenation24.com/). This tool is handy for manually breaking words, which can be very useful.
