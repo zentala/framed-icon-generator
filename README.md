@@ -54,4 +54,4 @@ All icons from `icons/input/` will be processed and saved into `icons/output/`.
 ## ✨ Guidelines and Future Development
 
 * **Not Covered Edge Cases:** Overwriting previously generated icons without a prompt in batch mode is not necessary. It unnecessarily consumes resources even though the description would not change.
-* **More Tips:** For splitting words in English, I recommend using [https://www.hyphenation24.com/](https://www.hyphenation24.com/). This tool is handy for manually breaking words, which can be very useful.
+* **For splitting words in English:** I recommend using [https://www.hyphenation24.com/](https://www.hyphenation24.com/). This tool is handy for manually breaking words, which can be very useful.
