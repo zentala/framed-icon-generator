@@ -23,6 +23,31 @@ This service seems absent in the market, especially in Poland, and I would be a 
 # 🖨️ Print Quality
 I used a Brother `PT-E550W` printer which offers only 180dpi resolution, resulting in legible but slightly pixelated prints. For professional applications, I recommend a printer with 360dpi resolution, such as the `PT-P900W`, for clearer output. I used 24mm width semi-transparent tape. I strongly recommend these transparent tapes for a seamlessly blending or background-communing effect.
 
+<details>
+<summary>Click to see close-up quality of icon prints on a printer with 180dpi resolution</summary>
+  
+![1.27mm THT pin connectors](https://cdn.zentala.io/img/framed/127mmTHT.jpg)
+![7-segment digital display](https://cdn.zentala.io/img/framed/7-seg.digits.jpg)
+![AC to DC converters](https://cdn.zentala.io/img/framed/ac.dc.jpg)
+![Arduino microcontrollers](https://cdn.zentala.io/img/framed/arduino.jpg)
+![ATmega microcontrollers](https://cdn.zentala.io/img/framed/atmega.jpg)
+![Audio connectors & accesories](https://cdn.zentala.io/img/framed/audio.jpg)
+![Regulated DC to DC converter](https://cdn.zentala.io/img/framed/dc.dc.jpg)
+![DC to DC converter](https://cdn.zentala.io/img/framed/dc.dc.2.jpg)
+![Various diodes](https://cdn.zentala.io/img/framed/diodes.jpg)
+![ESP32 microcontroller modules](https://cdn.zentala.io/img/framed/esp32.jpg)
+![ESP8266 Wi-Fi modules](https://cdn.zentala.io/img/framed/esp8266.jpg)
+![Jumper cables](https://cdn.zentala.io/img/framed/jumper.cables.jpg)
+![R9V battery holders](https://cdn.zentala.io/img/framed/r9.holders.jpg)
+![Electrical relays](https://cdn.zentala.io/img/framed/relays.jpg)
+![Various resistors](https://cdn.zentala.io/img/framed/resistors.jpg)
+![Servo motors](https://cdn.zentala.io/img/framed/servo.jpg)
+![Shift registers IC](https://cdn.zentala.io/img/framed/shift.register.jpg)
+![Solder masks for PCBs](https://cdn.zentala.io/img/framed/solder.masks.jpg)
+<!-- ![IEC 320 C14 power connector](https://cdn.zentala.io/img/framed/iec320.c14.jpg) -->
+
+</details>
+
 ## 🏗 Development & demo
 Click `Gitpod` button above to setup development workspace in the Cloud and develop code in your browser. 
 
