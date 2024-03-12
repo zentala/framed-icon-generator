@@ -5,7 +5,7 @@ Adds rounded border and description around icon.
 
 I use it to generate labels for my collection of electronic components.
 
-![Generated sticker icons on my electronic drawers](https://cdn.zentala.io/img/framed/framed_icon.jpg)
+![Generated sticker icons on my electronic drawers](https://static.zentala.io/framed/framed_icon.jpg)
 
 # 📝 Limitations in Icon Provision
 Unfortunately, I am unable to provide the specific icons I used due to copyright issues. While I can offer the entire code for generating the frames, the icons themselves, essential for a complete product, are missing. If you have ideas for circumventing this, such as creating your own icon set or using open-source electronics icons sets, please feel free to submit your PRs and implement changes. Despite the lack of icons, I still hope to inspire someone in creating something similar.
@@ -26,25 +26,25 @@ I used a Brother `PT-E550W` printer which offers only 180dpi resolution, resulti
 <details>
 <summary>Click to see close-up quality of icon prints on a printer with 180dpi resolution</summary>
   
-![1.27mm THT pin connectors](https://cdn.zentala.io/img/framed/127mmTHT.jpg)
-![7-segment digital display](https://cdn.zentala.io/img/framed/7-seg.digits.jpg)
-![AC to DC converters](https://cdn.zentala.io/img/framed/ac.dc.jpg)
-![Arduino microcontrollers](https://cdn.zentala.io/img/framed/arduino.jpg)
-![ATmega microcontrollers](https://cdn.zentala.io/img/framed/atmega.jpg)
-![Audio connectors & accesories](https://cdn.zentala.io/img/framed/audio.jpg)
-![Regulated DC to DC converter](https://cdn.zentala.io/img/framed/dc.dc.jpg)
-![DC to DC converter](https://cdn.zentala.io/img/framed/dc.dc.2.jpg)
-![Various diodes](https://cdn.zentala.io/img/framed/diodes.jpg)
-![ESP32 microcontroller modules](https://cdn.zentala.io/img/framed/esp32.jpg)
-![ESP8266 Wi-Fi modules](https://cdn.zentala.io/img/framed/esp8266.jpg)
-![Jumper cables](https://cdn.zentala.io/img/framed/jumper.cables.jpg)
-![R9V battery holders](https://cdn.zentala.io/img/framed/r9.holders.jpg)
-![Electrical relays](https://cdn.zentala.io/img/framed/relays.jpg)
-![Various resistors](https://cdn.zentala.io/img/framed/resistors.jpg)
-![Servo motors](https://cdn.zentala.io/img/framed/servo.jpg)
-![Shift registers IC](https://cdn.zentala.io/img/framed/shift.register.jpg)
-![Solder masks for PCBs](https://cdn.zentala.io/img/framed/solder.masks.jpg)
-<!-- ![IEC 320 C14 power connector](https://cdn.zentala.io/img/framed/iec320.c14.jpg) -->
+![1.27mm THT pin connectors](https://static.zentala.io/framed/127mmTHT.jpg)
+![7-segment digital display](https://static.zentala.io/framed/7-seg.digits.jpg)
+![AC to DC converters](https://static.zentala.io/framed/ac.dc.jpg)
+![Arduino microcontrollers](https://static.zentala.io/framed/arduino.jpg)
+![ATmega microcontrollers](https://static.zentala.io/framed/atmega.jpg)
+![Audio connectors & accesories](https://static.zentala.io/framed/audio.jpg)
+![Regulated DC to DC converter](https://static.zentala.io/framed/dc.dc.jpg)
+![DC to DC converter](https://static.zentala.io/framed/dc.dc.2.jpg)
+![Various diodes](https://static.zentala.io/framed/diodes.jpg)
+![ESP32 microcontroller modules](https://static.zentala.io/framed/esp32.jpg)
+![ESP8266 Wi-Fi modules](https://static.zentala.io/framed/esp8266.jpg)
+![Jumper cables](https://static.zentala.io/framed/jumper.cables.jpg)
+![R9V battery holders](https://static.zentala.io/framed/r9.holders.jpg)
+![Electrical relays](https://static.zentala.io/framed/relays.jpg)
+![Various resistors](https://static.zentala.io/framed/resistors.jpg)
+![Servo motors](https://static.zentala.io/framed/servo.jpg)
+![Shift registers IC](https://static.zentala.io/framed/shift.register.jpg)
+![Solder masks for PCBs](https://static.zentala.io/framed/solder.masks.jpg)
+<!-- ![IEC 320 C14 power connector](https://static.zentala.io/framed/iec320.c14.jpg) -->
 
 </details>
 
